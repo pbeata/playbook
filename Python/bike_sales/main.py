@@ -29,5 +29,37 @@ print( "Mean Unit Cost:   " + str(sales['Unit_Cost'].mean()))
 print( "Median Unit Cost: " + str(sales['Unit_Cost'].median()))
 
 # Plot some data about the unit cost using the Pandas library:
-sales['Unit_Cost'].plot(kind='box', vert=False, figsize=(14,6))
+sales['Unit_Cost'].plot(kind='box', vert=False, figsize=(12,5))
 plt.show()
+
+# Density plot example (SKIP PLOT)
+# sales['Unit_Cost'].plot(kind='density', figsize=(12,5)) # kde
+# plt.show()
+
+# Now let's add in the mean and median to the density plot
+ax = sales['Unit_Cost'].plot(kind='density', figsize=(12,5)) # kde
+ax.axvline(sales['Unit_Cost'].mean(), color='red')
+ax.axvline(sales['Unit_Cost'].median(), color='green')
+plt.show()
+
+# Finally, we can plot a histogram of the costs
+ax = sales['Unit_Cost'].plot(kind='hist', figsize=(12,5))
+ax.set_xlabel('Price (USD)')
+ax.set_ylabel('Number of Sales')
+plt.show()
+
+
+
+# TESTING A PLOT WITH UBUNTU AND PYTHON 3
+# df = pd.DataFrame({
+#     'name':['john','mary','peter','jeff','bill','lisa','jose'],
+#     'age':[23,78,22,19,45,33,20],
+#     'gender':['M','F','M','M','M','F','M'],
+#     'state':['california','dc','california','dc','california','texas','texas'],
+#     'num_children':[2,0,0,3,2,1,4],
+#     'num_pets':[5,1,0,5,2,2,3]
+# })
+
+# # a scatter plot comparing num_children and num_pets
+# df.plot(kind='scatter',x='num_children',y='num_pets',color='red')
+# plt.show()
