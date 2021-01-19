@@ -1,5 +1,7 @@
 
 import numpy as np
+import sys
+import time
 
 print("This is a tutorial on the NumPy library")
 
@@ -102,13 +104,81 @@ print(A.std(axis=1))
 # Broadcasting and Vectorized Operations
 a = np.arange(4)
 print(a)
-b = a + 10  # vectorized: each element of a has 10 added to it
+b = a + 10  # ***vectorized: each element of a has 10 added to it
+# operation is performed on EACH individual element
 print(b)
-c = a * 10
+c = a * 10  # this types of operations are optimized to be extremely fast
 print(c)
 
 print(a)
-a += 100
+a += 100  # a -= 100, a *= 0.1, etc..
 print(a)
+
+
+# Vector Addition with NumPy Arrays
+a = np.array([0, 1, 2, 3])
+b = np.array([0, 10, 20, 30])
+c = a + b
+print(c)
+
+
+# Boolean Arrays (***VERY IMPORTANT***)
+a = np.arange(4)
+
+# indexing with boolean arrays
+print(a[[True, False, False, True]])
+
+# we get a boolean array as a result too:
+print(a >= 2)
+
+# now we can use that result to index our array very easily
+print(a[a >= 2])
+
+# return values that are greater than the mean
+print(a[a > a.mean()])
+
+# same with matrices
+A = np.random.randint(100, size=(3,3))
+print(A)
+print(A > 30)
+print(A[A > 30])
+
+
+# LINEAR ALGEBRA (important for ML)
+B = np.array([
+	[6, 5],
+	[4, 3],
+	[2, 1]
+	])
+
+print(A.dot(B))
+print(A @ B)   # cross product
+print(B.T)
+print(B.T @ A)
+
+
+# Size of Objects in Memory
+
+# int, floats in NumPy versus noraml Python
+
+print("an integer in Python is: " + str(sys.getsizeof(1)) + " bytes")
+print("a long integer in Python is: " + str(sys.getsizeof(10**100)) + " bytes")
+
+print("an int in NumPy is: " + str(np.dtype(int).itemsize) + " bytes")
+print("an int8 in NumPy is: " + str(np.dtype(np.int8).itemsize) + " bytes")
+print("a float in NumPy is: " + str(np.dtype(float).itemsize) + " bytes")
+
+
+# Performance
+n = 10000
+x = list(range(n))
+y = np.arange(n)
+
+sumx = sum([xi ** 2 for xi in x]) 	#slower
+sumy = np.sum(y ** 2)				#faster
+
+
+# Useful Functions:
+# (check the notebooks for examples and exercises)
 
 
